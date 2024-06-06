@@ -5,7 +5,7 @@ pipeline {
         jdk 'JDK'
     }
     stages {
-        stage ('Initialize') {
+        stage('Initialize') {
             steps {
                 sh '''
                     echo "PATH = ${PATH}"
@@ -14,9 +14,10 @@ pipeline {
             }
         }
 
-        stage ('Build') {
+        stage('Build') {
             steps {
                 echo 'This is a minimal pipeline.'
+                sh 'mvn -Dmaven.test.failure.ignore clean package'
             }
         }
     }
