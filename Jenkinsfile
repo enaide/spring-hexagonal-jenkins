@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'This is a minimal pipeline.'
-                // sh 'mvn -Dmaven.test.failure.ignore clean package'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
     }
