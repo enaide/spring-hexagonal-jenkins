@@ -2,8 +2,6 @@ package com.ecfcode.hexagonal.infrastracture.entities.codejava.sale;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
