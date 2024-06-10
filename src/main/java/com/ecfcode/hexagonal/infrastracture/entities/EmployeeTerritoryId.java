@@ -16,14 +16,31 @@ public class EmployeeTerritoryId implements Serializable {
     private String territoryId;
 
     public EmployeeTerritoryId() {}
-    public EmployeeTerritoryId(Integer employeeId, Integer territoryId) {
+    public EmployeeTerritoryId(Integer employeeId, String territoryId) {
         this.employeeId = employeeId;
+        this.territoryId = territoryId;
+    }
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getTerritoryId() {
+        return territoryId;
+    }
+
+    public void setTerritoryId(String territoryId) {
+        this.territoryId = territoryId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof EmployeeTerritoryId)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         EmployeeTerritoryId that = (EmployeeTerritoryId) o;
         return Objects.equals(employeeId, that.employeeId) && Objects.equals(territoryId, that.territoryId);
     }
@@ -31,5 +48,13 @@ public class EmployeeTerritoryId implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(employeeId, territoryId);
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeTerritoryId{" +
+                "employeeId=" + employeeId +
+                ", territoryId='" + territoryId + '\'' +
+                '}';
     }
 }

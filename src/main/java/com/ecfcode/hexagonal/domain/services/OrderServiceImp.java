@@ -6,9 +6,11 @@ import com.ecfcode.hexagonal.domain.entities.Product;
 import com.ecfcode.hexagonal.domain.exception.DomainException;
 import com.ecfcode.hexagonal.domain.repository.OrderRepository;
 import com.ecfcode.hexagonal.domain.services.abstracts.OrderService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImp implements OrderService {
 
     private final OrderRepository orderRepository;
