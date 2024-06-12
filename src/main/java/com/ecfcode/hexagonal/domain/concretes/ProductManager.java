@@ -7,7 +7,6 @@ import com.ecfcode.hexagonal.core.utilities.results.Result;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessDataResult;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessResult;
 import com.ecfcode.hexagonal.domain.abstracts.ProductService;
-import com.ecfcode.hexagonal.domain.models.Product;
 import com.ecfcode.hexagonal.domain.requests.products.CreateProductRequest;
 import com.ecfcode.hexagonal.domain.requests.products.DeleteProductRequest;
 import com.ecfcode.hexagonal.domain.responses.dtos.PageItem;
@@ -16,6 +15,7 @@ import com.ecfcode.hexagonal.domain.responses.products.ProductGetResponse;
 import com.ecfcode.hexagonal.domain.responses.products.ProductListResponse;
 import com.ecfcode.hexagonal.infrastracture.abstracts.ProductRepository;
 import com.ecfcode.hexagonal.domain.requests.products.UpdateProductRequest;
+import com.ecfcode.hexagonal.infrastracture.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,8 +29,8 @@ import java.util.stream.Collectors;
 @Service
 public class ProductManager implements ProductService {
 
-	private ProductRepository productRepository;
-	private ModelMapperService modelMapperService;
+	private final ProductRepository productRepository;
+	private final ModelMapperService modelMapperService;
 
 	@Autowired
 	public ProductManager(ProductRepository productRepository, ModelMapperService modelMapperService) {
