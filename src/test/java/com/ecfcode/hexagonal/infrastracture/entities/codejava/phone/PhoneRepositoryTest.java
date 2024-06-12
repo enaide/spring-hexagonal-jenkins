@@ -1,5 +1,8 @@
 package com.ecfcode.hexagonal.infrastracture.entities.codejava.phone;
 
+import com.ecfcode.hexagonal.infrastracture.demo.entities.phone.Phone;
+import com.ecfcode.hexagonal.infrastracture.demo.entities.phone.PhoneID;
+import com.ecfcode.hexagonal.infrastracture.demo.entities.phone.PhoneRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

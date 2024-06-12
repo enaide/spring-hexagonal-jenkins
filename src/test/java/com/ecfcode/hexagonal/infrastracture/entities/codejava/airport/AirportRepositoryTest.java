@@ -1,5 +1,8 @@
 package com.ecfcode.hexagonal.infrastracture.entities.codejava.airport;
 
+import com.ecfcode.hexagonal.infrastracture.demo.entities.airport.Airport;
+import com.ecfcode.hexagonal.infrastracture.demo.entities.airport.AirportID;
+import com.ecfcode.hexagonal.infrastracture.demo.entities.airport.AirportRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

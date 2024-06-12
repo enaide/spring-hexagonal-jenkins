@@ -1,10 +1,10 @@
 package com.ecfcode.hexagonal.infrastracture.repository;
 
-import com.ecfcode.hexagonal.infrastracture.entities.EmployeeTerritory;
-import com.ecfcode.hexagonal.infrastracture.entities.EmployeeTerritoryId;
-import com.ecfcode.hexagonal.infrastracture.repository.abstracts.EmployeeRepository;
-import com.ecfcode.hexagonal.infrastracture.repository.abstracts.EmployeeTerritoryRepository;
-import com.ecfcode.hexagonal.infrastracture.repository.abstracts.TerritoryRepository;
+import com.ecfcode.hexagonal.infrastracture.usecase.EmployeeTerritory;
+import com.ecfcode.hexagonal.infrastracture.usecase.EmployeeTerritoryId;
+import com.ecfcode.hexagonal.infrastracture.usecase.abstracts.EmployeeRepository;
+import com.ecfcode.hexagonal.infrastracture.usecase.abstracts.EmployeeTerritoryRepository;
+import com.ecfcode.hexagonal.infrastracture.usecase.abstracts.TerritoryRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
