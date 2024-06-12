@@ -16,6 +16,7 @@ public class EmployeeTerritoryId implements Serializable {
     private String territoryId;
 
     public EmployeeTerritoryId() {}
+
     public EmployeeTerritoryId(Integer employeeId, String territoryId) {
         this.employeeId = employeeId;
         this.territoryId = territoryId;

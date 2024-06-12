@@ -1,7 +1,7 @@
 package com.ecfcode.hexagonal.domain.services.abstracts;
 
-import com.ecfcode.hexagonal.domain.entities.OrderLine;
-import com.ecfcode.hexagonal.domain.entities.Product;
+import com.ecfcode.hexagonal.domain.models.OrderLine;
+import com.ecfcode.hexagonal.domain.models.Product;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.ecfcode.hexagonal.domain.repository;
 
-import com.ecfcode.hexagonal.domain.entities.Order;
+import com.ecfcode.hexagonal.domain.models.Order;
 
 import java.util.Optional;
 

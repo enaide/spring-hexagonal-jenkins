@@ -11,6 +11,7 @@ import lombok.Setter;
 public class EmployeeTerritory {
     @EmbeddedId
     private EmployeeTerritoryId id;
+
     @ManyToOne
     @MapsId("employeeId")
     @JoinColumn(name = "employeeId")

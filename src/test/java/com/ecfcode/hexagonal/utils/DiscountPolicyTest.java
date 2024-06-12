@@ -1,8 +1,8 @@
 package com.ecfcode.hexagonal.utils;
 
-import com.ecfcode.hexagonal.domain.entities.Order;
-import com.ecfcode.hexagonal.domain.entities.OrderLine;
-import com.ecfcode.hexagonal.domain.entities.SpecialOrder;
+import com.ecfcode.hexagonal.domain.models.Order;
+import com.ecfcode.hexagonal.domain.models.OrderLine;
+import com.ecfcode.hexagonal.domain.models.SpecialOrder;
 import com.ecfcode.hexagonal.domain.services.*;
 import com.ecfcode.hexagonal.domain.services.abstracts.DiscountPolicy;
 import com.ecfcode.hexagonal.domain.services.abstracts.SpecialDiscountPolicy;

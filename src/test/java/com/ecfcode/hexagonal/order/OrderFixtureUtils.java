@@ -1,7 +1,7 @@
 package com.ecfcode.hexagonal.order;
 
-import com.ecfcode.hexagonal.domain.entities.OrderLine;
-import com.ecfcode.hexagonal.domain.entities.Product;
+import com.ecfcode.hexagonal.domain.models.OrderLine;
+import com.ecfcode.hexagonal.domain.models.Product;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

@@ -1,8 +1,8 @@
 package com.ecfcode.hexagonal.domain.services;
 
-import com.ecfcode.hexagonal.domain.entities.Order;
-import com.ecfcode.hexagonal.domain.entities.OrderLine;
-import com.ecfcode.hexagonal.domain.entities.Product;
+import com.ecfcode.hexagonal.domain.models.Order;
+import com.ecfcode.hexagonal.domain.models.OrderLine;
+import com.ecfcode.hexagonal.domain.models.Product;
 import com.ecfcode.hexagonal.domain.exception.DomainException;
 import com.ecfcode.hexagonal.domain.repository.OrderRepository;
 import com.ecfcode.hexagonal.domain.services.abstracts.OrderService;
