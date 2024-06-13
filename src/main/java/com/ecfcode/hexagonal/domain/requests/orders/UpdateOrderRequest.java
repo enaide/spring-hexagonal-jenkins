@@ -17,7 +17,7 @@ public class UpdateOrderRequest {
 	
 	@NotEmpty
 	@Positive
-	private int orderId;
+	private Long orderId;
 	
 	@FutureOrPresent
 	private LocalDate orderDate;

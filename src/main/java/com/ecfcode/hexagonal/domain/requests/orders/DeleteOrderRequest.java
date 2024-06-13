@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class DeleteOrderRequest {
 	
 	@Positive
-	private int orderId;
+	private Long orderId;
 }

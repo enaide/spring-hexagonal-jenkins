@@ -8,8 +8,8 @@ import com.ecfcode.hexagonal.core.utilities.results.DataResult;
 import com.ecfcode.hexagonal.core.utilities.results.Result;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessDataResult;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessResult;
-import com.ecfcode.hexagonal.infrastracture.abstracts.CountryRepository;
-import com.ecfcode.hexagonal.infrastracture.entities.concretes.Country;
+import com.ecfcode.hexagonal.infrastructure.abstracts.CountryRepository;
+import com.ecfcode.hexagonal.infrastructure.entities.concretes.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

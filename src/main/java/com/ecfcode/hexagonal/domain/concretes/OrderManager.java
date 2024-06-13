@@ -13,8 +13,9 @@ import com.ecfcode.hexagonal.domain.requests.orders.DeleteOrderRequest;
 import com.ecfcode.hexagonal.domain.requests.orders.UpdateOrderRequest;
 import com.ecfcode.hexagonal.domain.responses.orders.OrderGetResponse;
 import com.ecfcode.hexagonal.domain.responses.orders.OrderListResponse;
-import com.ecfcode.hexagonal.infrastracture.abstracts.OrderRepository;
-import com.ecfcode.hexagonal.infrastracture.entities.concretes.Order;
+import com.ecfcode.hexagonal.infrastructure.abstracts.OrderRepository;
+import com.ecfcode.hexagonal.infrastructure.entities.concretes.Order;
+import com.ecfcode.hexagonal.infrastructure.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +25,14 @@ import java.util.stream.Collectors;
 @Service
 public class OrderManager implements OrderService {
 
-	private OrderRepository orderRepository;
-	private ModelMapperService modelMapperService;
+	private final OrderRepository orderRepository;
+	private final ModelMapperService modelMapperService;
 
 	@Autowired
 	public OrderManager(OrderRepository orderRepository, ModelMapperService modelMapperService) {
 		this.orderRepository = orderRepository;
 		this.modelMapperService = modelMapperService;
 	}
-
 
 	@Override
 	public Result add(CreateOrderRequest createOrderRequest) {
@@ -60,10 +60,11 @@ public class OrderManager implements OrderService {
 	}
 
 	@Override
-	public DataResult<OrderGetResponse> getById(int id) {
-		Order order = this.orderRepository.findById(id);
+	public DataResult<OrderGetResponse> getById(Long id) {
+		Order order = this.orderRepository.findById(id)
+				.orElseThrow(()-> new NotFoundException("Order with given id: "+ id +" doesn't exist"));
 		OrderGetResponse response = this.modelMapperService.forResponse().map(order, OrderGetResponse.class);
-		
+
 		return new SuccessDataResult<OrderGetResponse>(response);
 	}
 	

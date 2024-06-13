@@ -12,8 +12,8 @@ import com.ecfcode.hexagonal.core.utilities.results.DataResult;
 import com.ecfcode.hexagonal.core.utilities.results.Result;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessDataResult;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessResult;
-import com.ecfcode.hexagonal.infrastracture.abstracts.EmployeeRepository;
-import com.ecfcode.hexagonal.infrastracture.entities.concretes.Employee;
+import com.ecfcode.hexagonal.infrastructure.abstracts.EmployeeRepository;
+import com.ecfcode.hexagonal.infrastructure.entities.concretes.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,12 @@
 package com.ecfcode.hexagonal.utils;
 
-import com.ecfcode.hexagonal.domain.models.Order;
-import com.ecfcode.hexagonal.domain.models.OrderLine;
-import com.ecfcode.hexagonal.domain.models.SpecialOrder;
-import com.ecfcode.hexagonal.domain.services.*;
+import com.ecfcode.hexagonal.domain.models.OrderDO;
+import com.ecfcode.hexagonal.domain.models.OrderLineDO;
+import com.ecfcode.hexagonal.domain.models.SpecialOrderDO;
+import com.ecfcode.hexagonal.domain.services.concretes.AmountBasedDiscountPolicy;
 import com.ecfcode.hexagonal.domain.services.abstracts.DiscountPolicy;
+import com.ecfcode.hexagonal.domain.services.concretes.DiscountPolicyImp;
+import com.ecfcode.hexagonal.domain.services.concretes.FlatDiscountPolicy;
 import com.ecfcode.hexagonal.domain.services.abstracts.SpecialDiscountPolicy;
 
 import com.ecfcode.hexagonal.order.OrderFixtureUtils;
@@ -28,7 +30,7 @@ class DiscountPolicyTest {
     @Test
     void test() {
         // given
-        Order orderWorth501Dollars = orderWorthNDollars(501);
+        OrderDO orderWorth501Dollars = orderWorthNDollars(501);
 
         DiscountPolicy flatPolicy = new FlatDiscountPolicy();
         DiscountPolicy amountPolicy = new AmountBasedDiscountPolicy();
@@ -52,18 +54,18 @@ class DiscountPolicyTest {
     @Test
     void test1() throws Exception {
 //        // given
-        Order regularOrder = new SpecialOrder(anyOrderLines());
-        SpecialOrder specialOrder = new SpecialOrder(anyOrderLines());
+        OrderDO regularOrder = new SpecialOrderDO(anyOrderLines());
+        SpecialOrderDO specialOrder = new SpecialOrderDO(anyOrderLines());
 
         SpecialDiscountPolicy specialPolicy = new SpecialDiscountPolicy() {
 
             @Override
-            public double discount(Order order) {
+            public double discount(OrderDO order) {
                 return 0.01;
             }
 
             @Override
-            public double discount(SpecialOrder order) {
+            public double discount(SpecialOrderDO order) {
                 return 0.1;
             }
         };
@@ -87,11 +89,11 @@ class DiscountPolicyTest {
     void test2() {
         // given
         boolean eligibleForExtraDiscount = true;
-        Order specialOrder = new SpecialOrder(
+        OrderDO specialOrder = new SpecialOrderDO(
                 OrderFixtureUtils.orderLineItemsWorthNDollars(100),
                 eligibleForExtraDiscount
         );
-        Order order = new Order(
+        OrderDO order = new OrderDO(
                 OrderFixtureUtils.orderLineItemsWorthNDollars(100)
         );
 
@@ -125,11 +127,11 @@ class DiscountPolicyTest {
         assertThat(totalCostFromRegularOrder).isEqualTo(expected1);
     }
 
-    private Order orderWorthNDollars(int totalCost) {
-        return new Order(OrderFixtureUtils.orderLineItemsWorthNDollars(totalCost));
+    private OrderDO orderWorthNDollars(int totalCost) {
+        return new OrderDO(OrderFixtureUtils.orderLineItemsWorthNDollars(totalCost));
     }
 
-    private List<OrderLine> anyOrderLines() {
+    private List<OrderLineDO> anyOrderLines() {
         return OrderFixtureUtils.anyOrderLines();
     }
 }

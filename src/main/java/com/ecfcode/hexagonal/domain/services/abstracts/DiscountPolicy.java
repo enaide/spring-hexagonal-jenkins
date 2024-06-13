@@ -1,7 +1,7 @@
 package com.ecfcode.hexagonal.domain.services.abstracts;
 
-import com.ecfcode.hexagonal.domain.models.Order;
+import com.ecfcode.hexagonal.domain.models.OrderDO;
 
 public interface DiscountPolicy {
-    double discount(Order order);
+    double discount(OrderDO order);
 }

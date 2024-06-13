@@ -16,6 +16,6 @@ public interface OrderDetailService {
 	Result delete(DeleteOrderDetailRequest deleteOrderDetailRequest);
 	Result update(UpdateOrderDetailRequest updateOrderDetailRequest);
 	
-	DataResult<OrderDetailGetResponse> getById(int orderId,int productId);
+	DataResult<OrderDetailGetResponse> getById(Long orderId,int productId);
 	DataResult<List<OrderDetailListResponse>> getAll();
 }

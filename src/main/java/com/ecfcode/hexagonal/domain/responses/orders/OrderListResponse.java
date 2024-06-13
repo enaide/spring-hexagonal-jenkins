@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class OrderListResponse {
 	
-	private int orderId;
+	private Long orderId;
 	private LocalDate orderDate;
 	private LocalDate requiredDate;
 	private LocalDate shippedDate;

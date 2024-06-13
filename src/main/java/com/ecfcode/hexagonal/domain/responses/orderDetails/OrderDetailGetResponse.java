@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderDetailGetResponse {
 
-	private int orderId;
+	private Long orderId;
 	private double unitPrice;
 	private int quantity;
 	private double discount;

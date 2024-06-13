@@ -7,12 +7,12 @@ import com.ecfcode.hexagonal.domain.requests.suppliers.DeleteSupplierRequest;
 import com.ecfcode.hexagonal.domain.requests.suppliers.UpdateSupplierRequest;
 import com.ecfcode.hexagonal.domain.responses.suppliers.SupplierGetResponse;
 import com.ecfcode.hexagonal.domain.responses.suppliers.SupplierListResponse;
-import com.ecfcode.hexagonal.infrastracture.abstracts.SupplierRepository;
+import com.ecfcode.hexagonal.infrastructure.abstracts.SupplierRepository;
 import com.ecfcode.hexagonal.core.utilities.results.DataResult;
 import com.ecfcode.hexagonal.core.utilities.results.Result;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessDataResult;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessResult;
-import com.ecfcode.hexagonal.infrastracture.entities.concretes.Supplier;
+import com.ecfcode.hexagonal.infrastructure.entities.concretes.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
 package com.ecfcode.hexagonal.order;
 
-import com.ecfcode.hexagonal.domain.models.Order;
-import com.ecfcode.hexagonal.domain.models.OrderLine;
-import com.ecfcode.hexagonal.domain.models.Product;
+import com.ecfcode.hexagonal.domain.models.OrderDO;
+import com.ecfcode.hexagonal.domain.models.OrderLineDO;
+import com.ecfcode.hexagonal.domain.models.ProductDO;
 import com.ecfcode.hexagonal.domain.exception.DomainException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,9 +21,9 @@ class OrderTest {
     @Test
     void test0() {
         // given
-        OrderLine ol0 = new OrderLine(new Product(1L,BigDecimal.valueOf(10.00)), 2);
-        OrderLine ol1 = new OrderLine(new Product(1L,BigDecimal.valueOf(5.00)), 10);
-        Order order = new Order(Arrays.asList(ol0, ol1));
+        OrderLineDO ol0 = new OrderLineDO(new ProductDO(1L,BigDecimal.valueOf(10.00)), 2);
+        OrderLineDO ol1 = new OrderLineDO(new ProductDO(1L,BigDecimal.valueOf(5.00)), 10);
+        OrderDO order = new OrderDO(Arrays.asList(ol0, ol1));
 
         // when
         BigDecimal totalCost = order.totalCost();
@@ -36,7 +36,7 @@ class OrderTest {
     @Test
     void test1() {
         // when
-        Throwable throwable = catchThrowable(() -> new Order(new ArrayList<>()));
+        Throwable throwable = catchThrowable(() -> new OrderDO(new ArrayList<>()));
         // then
         assertThat(throwable).isInstanceOf(DomainException.class);
     }
@@ -45,12 +45,12 @@ class OrderTest {
     @Test
     void test2() {
         // given
-        OrderLine ol0 = new OrderLine(new Product(1L,BigDecimal.valueOf(10.00)), 1);
-        OrderLine ol1 = new OrderLine(new Product(1L,BigDecimal.valueOf( 5.00)), 1);
-        Order order = new Order(Arrays.asList(ol0, ol1));
+        OrderLineDO ol0 = new OrderLineDO(new ProductDO(1L,BigDecimal.valueOf(10.00)), 1);
+        OrderLineDO ol1 = new OrderLineDO(new ProductDO(1L,BigDecimal.valueOf( 5.00)), 1);
+        OrderDO order = new OrderDO(Arrays.asList(ol0, ol1));
 
         // when
-        order.addLineItem(new OrderLine(new Product(1L,BigDecimal.valueOf(20.00)), 2));
+        order.addLineItem(new OrderLineDO(new ProductDO(1L,BigDecimal.valueOf(20.00)), 2));
 
         // then
         assertThat(order.totalCost()).isEqualTo(BigDecimal.valueOf( 55.00));
@@ -60,10 +60,10 @@ class OrderTest {
     @Test
     void test3() {
         // given
-        OrderLine ol0 = new OrderLine(new Product(1L,BigDecimal.valueOf( 10.00)), 1);
-        OrderLine ol1 = new OrderLine(new Product(2L,BigDecimal.valueOf(20.00)), 1);
-        OrderLine ol2 = new OrderLine(new Product(3L,BigDecimal.valueOf(30.00)), 1);
-        Order order = new Order(Arrays.asList(ol0, ol1, ol2));
+        OrderLineDO ol0 = new OrderLineDO(new ProductDO(1L,BigDecimal.valueOf( 10.00)), 1);
+        OrderLineDO ol1 = new OrderLineDO(new ProductDO(2L,BigDecimal.valueOf(20.00)), 1);
+        OrderLineDO ol2 = new OrderLineDO(new ProductDO(3L,BigDecimal.valueOf(30.00)), 1);
+        OrderDO order = new OrderDO(Arrays.asList(ol0, ol1, ol2));
 
         // when
         order.removeLineItemByProductId(1L);
@@ -76,8 +76,8 @@ class OrderTest {
     @Test
     void test4() {
         // given
-        OrderLine ol0 = new OrderLine(new Product(1L,BigDecimal.valueOf( 10.00)), 1);
-        Order order = new Order(List.of(ol0));
+        OrderLineDO ol0 = new OrderLineDO(new ProductDO(1L,BigDecimal.valueOf( 10.00)), 1);
+        OrderDO order = new OrderDO(List.of(ol0));
 
         // when
         Throwable throwable = catchThrowable(() -> order.addLineItem(null));

@@ -11,8 +11,8 @@ import com.ecfcode.hexagonal.core.utilities.results.DataResult;
 import com.ecfcode.hexagonal.core.utilities.results.Result;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessDataResult;
 import com.ecfcode.hexagonal.core.utilities.results.SuccessResult;
-import com.ecfcode.hexagonal.infrastracture.abstracts.OrderDetailRepository;
-import com.ecfcode.hexagonal.infrastracture.entities.concretes.OrderDetail;
+import com.ecfcode.hexagonal.infrastructure.abstracts.OrderDetailRepository;
+import com.ecfcode.hexagonal.infrastructure.entities.concretes.OrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +58,7 @@ public class OrderDetailManager implements OrderDetailService {
 	}
 
 	@Override
-	public DataResult<OrderDetailGetResponse> getById(int orderId,int productId) {
+	public DataResult<OrderDetailGetResponse> getById(Long orderId,int productId) {
 		OrderDetail orderDetail = this.orderDetailRepository.getByOrder_OrderIdAndProduct_ProductId(orderId,productId);
 		OrderDetailGetResponse response = this.modelMapperService.forResponse().map(orderDetail, OrderDetailGetResponse.class);
 		

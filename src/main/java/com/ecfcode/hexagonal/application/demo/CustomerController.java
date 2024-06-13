@@ -1,7 +1,7 @@
 package com.ecfcode.hexagonal.application.demo;
 
-import com.ecfcode.hexagonal.infrastracture.demo.entities.Customer;
-import com.ecfcode.hexagonal.infrastracture.demo.concretes.CustomerService;
+import com.ecfcode.hexagonal.infrastructure.demo.entities.CustomerDemo;
+import com.ecfcode.hexagonal.infrastructure.demo.concretes.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<?> saveCustomer(@RequestBody CustomerDemo customer) {
         return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.CREATED);
     }
 }

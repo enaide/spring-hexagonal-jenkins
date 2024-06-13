@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CreateOrderDetailRequest {
 
 	@Positive
-	private int orderId;
+	private Long orderId;
 	
 	@Positive
 	private int  productId;

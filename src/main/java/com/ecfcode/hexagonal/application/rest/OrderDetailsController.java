@@ -43,7 +43,7 @@ public class OrderDetailsController {
 	
 	
 	@GetMapping("/getbyid")
-	public DataResult<OrderDetailGetResponse> getById(@RequestParam int orderId,@RequestParam int productId){
+	public DataResult<OrderDetailGetResponse> getById(@RequestParam Long orderId,@RequestParam int productId){
 		return this.orderDetailService.getById(orderId,productId);
 	}
 	
