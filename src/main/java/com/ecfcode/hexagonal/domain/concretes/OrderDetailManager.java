@@ -43,7 +43,8 @@ public class OrderDetailManager implements OrderDetailService {
 
 	@Override
 	public Result delete(DeleteOrderDetailRequest deleteOrderDetailRequest) {
-		this.orderDetailRepository.deleteOrderDetailWithOrderIdAndProductId(deleteOrderDetailRequest.getOrderId(), deleteOrderDetailRequest.getProductId());
+		// TODO
+		// this.orderDetailRepository.deleteOrderDetailWithOrderIdAndProductId(deleteOrderDetailRequest.getOrderId(), deleteOrderDetailRequest.getProductId());
 		
 		return new SuccessResult("ORDER.DETAIL.DELETED");
 	}

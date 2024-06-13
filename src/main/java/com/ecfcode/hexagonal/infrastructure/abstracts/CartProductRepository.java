@@ -10,9 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface CartProductRepository extends JpaRepository<CartProduct, Integer>{
 
-
-	@Transactional
+	/*@Transactional
 	@Modifying
 	@Query("Delete from CartProduct Where cartId = :cartId")	
-	void deleteCartWithCartId(@Param("cartId")int cartId);
+	void deleteCartWithCartId(@Param("cartId")int cartId);*/
 }
