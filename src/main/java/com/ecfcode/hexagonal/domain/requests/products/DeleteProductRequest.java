@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DeleteProductRequest {
 
-	private int productId;
+	private Long productId;
 }

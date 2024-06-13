@@ -44,7 +44,7 @@ public class ProductsController {
     }
     
     @GetMapping("/getbyid")
-    public DataResult<ProductGetResponse> getById(@RequestParam int id) {
+    public DataResult<ProductGetResponse> getById(@RequestParam Long id) {
         return this.productService.getById(id);
     }
 	

@@ -14,7 +14,7 @@ public class CreateCartProductRequest {
     private int cartId;
 	
 	@Positive
-    private int productId;
+    private Long productId;
 	
 	@Positive
     private int quantity;

@@ -39,15 +39,26 @@ public class Product {
     private int discontinued; 
 	
 	@ManyToOne
-	@JoinColumn(name="category_id")
+	@JoinColumn(name="category_id",
+			nullable = false,
+			referencedColumnName = "category_id",
+			foreignKey = @ForeignKey(
+					name = "category_id_fk"
+			))
 	private Category category;
-	
+
+
+	@ManyToOne
+	@JoinColumn(name="supplier_id",
+			nullable = false,
+			referencedColumnName = "supplier_id",
+			foreignKey = @ForeignKey(
+					name = "supplier_id_fk"
+			))
+	private Supplier supplier;
+
 	@OneToMany(mappedBy="product")
 	private List<OrderDetail> orderDetails;
-	
-	@ManyToOne
-	@JoinColumn(name="supplier_id")
-	private Supplier supplier;
 
     @OneToMany(mappedBy = "product")
     private List<CartProduct> cartProducts;

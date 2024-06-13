@@ -17,7 +17,7 @@ public interface ProductService {
 	Result delete(DeleteProductRequest deleteProductRequest);
 	Result update(UpdateProductRequest updateProductRequest);
 	
-	DataResult<ProductGetResponse> getById(int id);
+	DataResult<ProductGetResponse> getById(Long id);
 	DataResult<List<ProductListResponse>> getAll();
 	
 	DataResult<List<ProductListResponse>> getAll(int pageNo,int pageSize);

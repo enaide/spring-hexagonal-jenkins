@@ -14,6 +14,7 @@ import com.ecfcode.hexagonal.infrastructure.abstracts.CartProductRepository;
 import com.ecfcode.hexagonal.infrastructure.abstracts.ProductRepository;
 import com.ecfcode.hexagonal.infrastructure.entities.concretes.CartProduct;
 import com.ecfcode.hexagonal.infrastructure.entities.concretes.Product;
+import com.ecfcode.hexagonal.infrastructure.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +38,9 @@ public class CartProductManager implements CartProductService{
 
     @Override
     public Result add(CreateCartProductRequest createCartProductRequest) {
+        var id = createCartProductRequest.getProductId();
         CartProduct cartProduct = this.modelMapperService.forRequest().map(createCartProductRequest, CartProduct.class);
-        Product product = this.productRepository.findById(createCartProductRequest.getProductId());
+        Product product = this.productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product with given id: "+ id +" doesn't exist"));
         cartProduct.setUnitPrice(product.getUnitPrice());
         this.cartProductRepository.save(cartProduct);
         return  new SuccessResult();

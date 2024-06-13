@@ -16,6 +16,7 @@ import com.ecfcode.hexagonal.domain.responses.products.ProductListResponse;
 import com.ecfcode.hexagonal.infrastructure.abstracts.ProductRepository;
 import com.ecfcode.hexagonal.domain.requests.products.UpdateProductRequest;
 import com.ecfcode.hexagonal.infrastructure.entities.concretes.Product;
+import com.ecfcode.hexagonal.infrastructure.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,8 +68,8 @@ public class ProductManager implements ProductService {
 	}
 
 	@Override
-	public DataResult<ProductGetResponse> getById(int id) {
-		Product product = this.productRepository.findById(id);
+	public DataResult<ProductGetResponse> getById(Long id) {
+		Product product = this.productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product with given id: "+ id +" doesn't exist"));
 		ProductGetResponse response = this.modelMapperService.forResponse().map(product,
 				ProductGetResponse.class);
 		
@@ -116,23 +117,22 @@ public class ProductManager implements ProductService {
 	@Override
 	public DataResult<List<ProductListResponse>> getAllSortedByAsc(String field) {
 		Sort sort = Sort.by(Sort.Order.asc(field));
-		List<Product> result = this.productRepository.findAll(sort);
-		List<ProductListResponse> response = result.stream()
-				.map(supplier -> this.modelMapperService.forResponse().map(supplier, ProductListResponse.class))
-				.collect(Collectors.toList());
-		
-		return new SuccessDataResult<List<ProductListResponse>>(response);
+		return getListDataResult(sort);
 	}
 
 	@Override
 	public DataResult<List<ProductListResponse>> getAllSortedByDesc(String field) {
 		Sort sort = Sort.by(Sort.Order.desc(field));
+		return getListDataResult(sort);
+	}
+
+	private DataResult<List<ProductListResponse>> getListDataResult(Sort sort) {
 		List<Product> result = this.productRepository.findAll(sort);
 		List<ProductListResponse> response = result.stream()
 				.map(supplier -> this.modelMapperService.forResponse().map(supplier, ProductListResponse.class))
 				.collect(Collectors.toList());
-		
-		return new SuccessDataResult<List<ProductListResponse>>(response) ;
+
+		return new SuccessDataResult<List<ProductListResponse>>(response);
 	}
 
 	private void checkIfCategoryLimitExceeds(int categoryId) {
