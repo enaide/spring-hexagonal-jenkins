@@ -26,8 +26,8 @@ public class City {
 	@JoinColumn(name = "country_id")
 	private Country country;
 	
-	@OneToMany(mappedBy="city")
-	private List<Customer> customers;
+/*	@OneToMany(mappedBy="city")
+	private List<Customer> customers;*/
 	
 	@OneToMany(mappedBy = "city")
 	private List<Employee> employees;

@@ -27,6 +27,9 @@ public class Employee {
 	
 	@Column(name="title")
 	private String title;
+
+	@Column(name="title_of_courtesy")
+	private String title_of_courtesy;
 	
 	@Column(name="birth_date")
 	private LocalDate birthDate;

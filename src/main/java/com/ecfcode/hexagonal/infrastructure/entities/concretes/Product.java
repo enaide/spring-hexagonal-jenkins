@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -24,7 +25,7 @@ public class Product {
 	private String productName;
 	
 	@Column(name="unit_price")
-	private double unitPrice;
+	private BigDecimal unitPrice;
 	
 	@Column(name="units_in_stock")
 	private int unitsInStock;
@@ -36,7 +37,10 @@ public class Product {
 	private String quantityPerUnit ;
 	
 	@Column(name="discontinued")
-    private int discontinued; 
+    private int discontinued;
+
+	@Column(name="reorder_level")
+	private int reorderLevel;
 	
 	@ManyToOne
 	@JoinColumn(name="category_id",

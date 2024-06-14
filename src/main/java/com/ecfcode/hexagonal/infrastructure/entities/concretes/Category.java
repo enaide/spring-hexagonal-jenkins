@@ -21,7 +21,11 @@ public class Category {
 	
 	@Column(name="category_name")
 	private String categoryName;
-	
+
+	@Column(name="description",
+			columnDefinition = "TEXT")
+	private String description;
+
 	@OneToMany(mappedBy="category")
 	private List<Product> products;
 }

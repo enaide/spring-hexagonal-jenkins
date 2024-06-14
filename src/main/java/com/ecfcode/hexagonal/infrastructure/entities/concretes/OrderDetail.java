@@ -26,22 +26,6 @@ public class OrderDetail {
     @Column(name = "product_id")
     private Long productId;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", insertable = false, updatable = false, nullable = false,
-            referencedColumnName = "order_id",
-            foreignKey = @ForeignKey(
-                    name = "order_id_fk"
-            ))
-    private Order order;
-
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", insertable = false, updatable = false, nullable = false,
-            referencedColumnName = "product_id",
-            foreignKey = @ForeignKey(
-                    name = "product_id_fk"
-            ))
-    private Product product;
 
     @Column(name = "unit_price")
     private BigDecimal unitPrice;
@@ -51,6 +35,22 @@ public class OrderDetail {
 
     @Column(name = "discount")
     private BigDecimal discount;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", insertable = false, updatable = false, nullable = false,
+            referencedColumnName = "order_id",
+            foreignKey = @ForeignKey(
+                    name = "order_details_order_fk"
+            ))
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", insertable = false, updatable = false, nullable = false,
+            referencedColumnName = "product_id",
+            foreignKey = @ForeignKey(
+                    name = "order_details_product_fk"
+            ))
+    private Product product;
 
     public OrderDetail(final OrderLineDO orderLine) {
         this.orderId = orderLine.getOrderLineId();

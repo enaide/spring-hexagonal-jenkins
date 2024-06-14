@@ -13,7 +13,7 @@ public class ProductDO {
     private final Long productId;
     private final BigDecimal price;
     private String productName;
-    private double unitPrice;
+    private BigDecimal unitPrice;
     private int unitsInStock;
     private int discontinued;
     private int unitsOnOrder;
@@ -41,7 +41,7 @@ public class ProductDO {
         return productName;
     }
 
-    public double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
