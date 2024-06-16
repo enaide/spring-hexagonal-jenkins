@@ -30,6 +30,7 @@ public class OrderRepositoryManager implements OrderRepositoryDO {
 
     @Override
     public OrderDO save(OrderDO order) {
-        return null;
+        Order o =  orderRepository.save(new Order(order));
+        return o.toOrder();
     }
 }

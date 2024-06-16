@@ -6,6 +6,5 @@ import java.util.Optional;
 
 public interface OrderRepositoryDO {
     Optional<OrderDO> findById(Long id);
-
     OrderDO save(OrderDO order);
 }

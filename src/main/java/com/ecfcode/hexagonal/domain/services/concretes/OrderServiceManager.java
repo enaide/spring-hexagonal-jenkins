@@ -22,7 +22,6 @@ public class OrderServiceManager implements OrderService {
     @Override
     public Long createOrder(List<OrderLineDO> orderLine) {
         OrderDO order = new OrderDO(orderLine);
-
         return orderRepository.save(order).getOrderId();
     }
 
@@ -64,6 +63,11 @@ public class OrderServiceManager implements OrderService {
         order.complete();
 
         orderRepository.save(order);
+    }
+
+    @Override
+    public OrderDO fetchOrder(Long id) {
+        return getOrder(id);
     }
 
     private OrderDO getOrder(Long id) {

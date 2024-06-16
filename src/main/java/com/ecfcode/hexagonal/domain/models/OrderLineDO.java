@@ -2,15 +2,18 @@ package com.ecfcode.hexagonal.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Data
 public class OrderLineDO {
 
     private Long orderLineId;
     private final int quantity;
     private BigDecimal discount;
+    private BigDecimal unitPrice;
 
     private final ProductDO product;
     // TODO
@@ -41,8 +44,7 @@ public class OrderLineDO {
     }
 
     BigDecimal cost() {
-        return product.getPrice()
-                .multiply(BigDecimal.valueOf(quantity));
+        return product.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 
     public ProductDO getProduct() {

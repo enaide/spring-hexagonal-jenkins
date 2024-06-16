@@ -57,15 +57,20 @@ public class OrderDetail {
         // TODO
         // this.order = new Order(orderLine.getOrder());
 
-        this.productId = orderLine.getProduct().getProductId();
-        this.product = new Product(orderLine.getProduct());
-
-        this.quantity = orderLine.getQuantity();
-        this.discount = orderLine.getDiscount();
-        this.product = new Product(orderLine.getProduct());
+//        this.productId = orderLine.getProduct().getProductId();
+//        this.product = new Product(orderLine.getProduct());
+//
+//        this.quantity = orderLine.getQuantity();
+//        this.discount = orderLine.getDiscount();
+//        this.product = new Product(orderLine.getProduct());
     }
 
     public OrderLineDO toOrderLine() {
-        return new OrderLineDO(new ProductDO(productId, unitPrice), quantity);
+        OrderLineDO orderLineDO = new OrderLineDO(new ProductDO(productId, unitPrice), quantity);
+        orderLineDO.setOrderLineId(orderId);
+        orderLineDO.setDiscount(discount);
+        orderLineDO.setUnitPrice(unitPrice);
+
+        return orderLineDO;
     }
 }

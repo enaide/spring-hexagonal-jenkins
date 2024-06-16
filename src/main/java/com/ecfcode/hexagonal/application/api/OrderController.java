@@ -1,5 +1,6 @@
 package com.ecfcode.hexagonal.application.api;
 
+import com.ecfcode.hexagonal.domain.models.OrderDO;
 import com.ecfcode.hexagonal.domain.requests.demo.AddProductRequest;
 import com.ecfcode.hexagonal.domain.requests.demo.CreateOrderRequest;
 import com.ecfcode.hexagonal.domain.responses.CreateOrderResponse;
@@ -39,5 +40,10 @@ public class OrderController {
     @PostMapping("/{id}/complete")
     void completeOrder(@PathVariable final Long id) {
         orderService.completeOrder(id);
+    }
+
+    @GetMapping("/{id}")
+    OrderDO fetchOrder(@PathVariable final Long id) {
+        return orderService.fetchOrder(id);
     }
 }

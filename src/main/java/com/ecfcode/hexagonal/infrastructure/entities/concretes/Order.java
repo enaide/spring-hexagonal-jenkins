@@ -90,18 +90,20 @@ public class Order {
 	}
 
 	public OrderDO toOrder() {
-		List<OrderLineDO> orderItems = orderDetails.stream()
-				.map(OrderDetail::toOrderLine)
-				.toList();
+		List<OrderLineDO> orderItems = orderDetails.stream().map(orderDetail -> orderDetail.toOrderLine()).toList();
 
 		List<ProductDO> namelessProducts = orderItems.stream()
-				.map(orderItem -> new ProductDO(orderItem.getProduct().getProductId(), orderItem.getProduct().getPrice())).toList();
+				.map(orderItem -> new ProductDO(
+						orderItem.getProduct().getProductId(),
+						orderItem.getProduct().getPrice())
+				).toList();
 
-		OrderDO order = new OrderDO(orderItems);
 //		namelessProducts.forEach(product -> order.addOrder(product));
 //		if (status == OrderStatus.COMPLETED) {
 //			order.complete();
 //		}
+
+		OrderDO order = new OrderDO(orderItems);
 		return order;
 	}
 }

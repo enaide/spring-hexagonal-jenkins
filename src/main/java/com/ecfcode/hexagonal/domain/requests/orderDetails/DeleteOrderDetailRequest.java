@@ -14,5 +14,5 @@ public class DeleteOrderDetailRequest {
 	private Long orderId;
 	
 	@Positive
-	private int productId;
+	private Long productId;
 }

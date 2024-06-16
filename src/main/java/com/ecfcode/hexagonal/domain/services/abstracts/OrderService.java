@@ -1,5 +1,6 @@
 package com.ecfcode.hexagonal.domain.services.abstracts;
 
+import com.ecfcode.hexagonal.domain.models.OrderDO;
 import com.ecfcode.hexagonal.domain.models.OrderLineDO;
 import com.ecfcode.hexagonal.domain.models.ProductDO;
 
@@ -17,4 +18,6 @@ public interface OrderService {
     void deleteOrderLine(Long id, Long orderLine);
 
     void completeOrder(Long id);
+
+    OrderDO fetchOrder(Long id);
 }

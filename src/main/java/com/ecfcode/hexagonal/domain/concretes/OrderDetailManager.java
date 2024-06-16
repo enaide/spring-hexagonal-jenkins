@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 @Service
 public class OrderDetailManager implements OrderDetailService {
 
-	private OrderDetailRepository orderDetailRepository;
-	private ModelMapperService modelMapperService;
+	private final OrderDetailRepository orderDetailRepository;
+	private final ModelMapperService modelMapperService;
 
 
 	@Autowired
@@ -43,8 +43,8 @@ public class OrderDetailManager implements OrderDetailService {
 
 	@Override
 	public Result delete(DeleteOrderDetailRequest deleteOrderDetailRequest) {
-		// TODO
-		// this.orderDetailRepository.deleteOrderDetailWithOrderIdAndProductId(deleteOrderDetailRequest.getOrderId(), deleteOrderDetailRequest.getProductId());
+
+	 	this.orderDetailRepository.deleteOrderDetailWithOrderIdAndProductId(deleteOrderDetailRequest.getOrderId(), deleteOrderDetailRequest.getProductId());
 		
 		return new SuccessResult("ORDER.DETAIL.DELETED");
 	}

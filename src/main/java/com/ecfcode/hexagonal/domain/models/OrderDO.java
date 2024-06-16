@@ -129,7 +129,4 @@ public class OrderDO {
         }
     }
 
-    public List<OrderLineDO> getOrderItems() {
-        return Collections.unmodifiableList(orderLines);
-    }
 }
