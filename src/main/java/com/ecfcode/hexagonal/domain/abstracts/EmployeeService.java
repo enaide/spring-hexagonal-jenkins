@@ -16,6 +16,6 @@ public interface EmployeeService {
 	Result delete(DeleteEmployeeRequest deleteEmployeeRequest);
 	Result update(UpdateEmployeeRequest updateEmployeeRequest);
 	
-	DataResult<EmployeeGetResponse> getById(int id);
+	DataResult<EmployeeGetResponse> getById(Long id);
 	DataResult<List<EmployeeListResponse>> getAll();
 }

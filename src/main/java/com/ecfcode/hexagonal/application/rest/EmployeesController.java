@@ -40,7 +40,7 @@ public class EmployeesController {
     }
 
     @GetMapping("/getbyid")
-    public DataResult<EmployeeGetResponse> getById(@RequestParam int id) {
+    public DataResult<EmployeeGetResponse> getById(@RequestParam Long id) {
         return this.employeeService.getById(id);
     }
     

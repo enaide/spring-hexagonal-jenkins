@@ -45,6 +45,7 @@ public class CustomerDemo {
     public void removeSale(Sale sale) {
         sales.remove(sale);
     }
+
     public void setSales(Collection<Sale> sales) {
         this.sales = sales;
     }

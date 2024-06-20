@@ -124,4 +124,16 @@ CREATE TABLE orders (
 
 -- INSERT INTO public.orders VALUES
 
+CREATE TABLE order_details (
+                               order_id smallint NOT NULL,
+                               product_id smallint NOT NULL,
+                               unit_price real NOT NULL,
+                               quantity smallint NOT NULL,
+                               discount real NOT NULL,
+                               PRIMARY KEY (order_id, product_id),
+                               FOREIGN KEY (product_id) REFERENCES products,
+                               FOREIGN KEY (order_id) REFERENCES orders
+);
+
 -- INSERT INTO public.order_details
+

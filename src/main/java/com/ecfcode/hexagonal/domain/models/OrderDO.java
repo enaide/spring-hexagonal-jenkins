@@ -20,9 +20,20 @@ public class OrderDO {
     private LocalDate orderDate;
     private LocalDate requiredDate;
     private LocalDate shippedDate;
-    private BigDecimal totalCost;
+    private String customerNumber;
+    private Long employeeId;
+    private Long shipVia;
+    private BigDecimal freight;
+    private String shipName;
+    private String shipAddress;
+    private String shipCity;
+    private String shipRegion;
+    private String shipPostalCode;
+    private String shipCountry;
 
+    private BigDecimal totalCost;
     private OrderStatus status;
+
     private final List<OrderLineDO> orderLines;
 
     @JsonCreator
@@ -31,6 +42,92 @@ public class OrderDO {
         this.orderLines = new ArrayList<>(orderLines);
         status = OrderStatus.CREATED;
         totalCost = calculateTotalCost();
+    }
+
+    @JsonCreator
+    public OrderDO(
+            @JsonProperty("orderId") Long orderId,
+            @JsonProperty("orderDate") LocalDate orderDate,
+            @JsonProperty("requiredDate") LocalDate requiredDate,
+
+            @JsonProperty("shippedDate") LocalDate shippedDate,
+            // TODO
+            @JsonProperty("customerNumber") String customerNumber,
+            // TODO
+            @JsonProperty("employeeId") Long employeeId,
+            // TODO
+            @JsonProperty("shipVia") Long shipVia,
+
+            @JsonProperty("freight") BigDecimal freight,
+            @JsonProperty("shipName") String shipName,
+            @JsonProperty("shipAddress") String shipAddress,
+            @JsonProperty("shipCity") String shipCity,
+            @JsonProperty("shipRegion") String shipRegion,
+            @JsonProperty("shipPostalCode") String shipPostalCode,
+            @JsonProperty("shipCountry") String shipCountry,
+            @JsonProperty("orderLines") List<OrderLineDO> orderLines) {
+
+        this.orderId = orderId;
+        this.orderDate = orderDate;
+        this.requiredDate = requiredDate;
+        this.shippedDate = shippedDate;
+        this.customerNumber = customerNumber;
+        this.employeeId = employeeId;
+        this.shipVia = shipVia;
+        this.freight = freight;
+        this.shipName = shipName;
+        this.shipAddress = shipAddress;
+        this.shipCity = shipCity;
+        this.shipRegion = shipRegion;
+        this.shipPostalCode = shipPostalCode;
+        this.shipCountry = shipCountry;
+
+        validateOrderLines(orderLines);
+        this.orderLines = new ArrayList<>(orderLines);
+        status = OrderStatus.CREATED;
+        totalCost = calculateTotalCost();
+    }
+
+    @JsonCreator
+    public OrderDO(
+            @JsonProperty("orderId") Long orderId,
+            @JsonProperty("orderDate") LocalDate orderDate,
+            @JsonProperty("requiredDate") LocalDate requiredDate,
+
+            @JsonProperty("shippedDate") LocalDate shippedDate,
+            // TODO
+            @JsonProperty("customerNumber") String customerNumber,
+            // TODO
+            @JsonProperty("employeeId") Long employeeId,
+            // TODO
+            @JsonProperty("shipVia") Long shipVia,
+
+            @JsonProperty("freight") BigDecimal freight,
+            @JsonProperty("shipName") String shipName,
+            @JsonProperty("shipAddress") String shipAddress,
+            @JsonProperty("shipCity") String shipCity,
+            @JsonProperty("shipRegion") String shipRegion,
+            @JsonProperty("shipPostalCode") String shipPostalCode,
+            @JsonProperty("shipCountry") String shipCountry) {
+
+        this.orderId = orderId;
+        this.orderDate = orderDate;
+        this.requiredDate = requiredDate;
+        this.shippedDate = shippedDate;
+        this.customerNumber = customerNumber;
+        this.employeeId = employeeId;
+        this.shipVia = shipVia;
+        this.freight = freight;
+        this.shipName = shipName;
+        this.shipAddress = shipAddress;
+        this.shipCity = shipCity;
+        this.shipRegion = shipRegion;
+        this.shipPostalCode = shipPostalCode;
+        this.shipCountry = shipCountry;
+
+        this.orderLines = new ArrayList<>();
+        status = OrderStatus.CREATED;
+        totalCost = BigDecimal.ZERO;
     }
 
     public void complete() {
@@ -44,6 +141,16 @@ public class OrderDO {
         OrderLineDO ol = new OrderLineDO(product, quantity);
         orderLines.add(ol);
         totalCost = totalCost.add(ol.cost());
+    }
+
+    public void addLineList(List<OrderLineDO> OrderL) {
+        validateState();
+        for(OrderLineDO orderLineItem : OrderL) {
+            checkNotNull(orderLineItem);
+//            orderLineItem.setOrder(this); TODO REVIEW LOOP LACK MEMORY
+            this.orderLines.add(orderLineItem);
+            totalCost = totalCost.add(orderLineItem.cost());
+        }
     }
 
     public void addLineItem(OrderLineDO orderLine) {
@@ -106,8 +213,8 @@ public class OrderDO {
 
     private BigDecimal calculateTotalCost() {
         return orderLines.stream()
-                .map(OrderLineDO::cost)
-                .reduce(BigDecimal::add)
+                .map(orderLineDO -> orderLineDO.cost())
+                .reduce((total, num) -> total.add(num))
                 .orElseThrow(() -> new DomainException("OrderLine doesn't exist."));
     }
 

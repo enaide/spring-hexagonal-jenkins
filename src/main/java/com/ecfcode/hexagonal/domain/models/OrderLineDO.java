@@ -11,13 +11,11 @@ import java.util.Objects;
 public class OrderLineDO {
 
     private Long orderLineId;
-    private final int quantity;
-    private BigDecimal discount;
-    private BigDecimal unitPrice;
-
     private final ProductDO product;
-    // TODO
-    // private final OrderDO order;
+    private BigDecimal discount;
+    private final int quantity;
+    private BigDecimal unitPrice;
+    private OrderDO order;
 
     @JsonCreator
     public OrderLineDO(
@@ -30,55 +28,36 @@ public class OrderLineDO {
 
     @JsonCreator
     public OrderLineDO(
+            @JsonProperty("orderLineId") final Long orderLineId,
             @JsonProperty("product") final ProductDO product,
+            @JsonProperty("discount") final BigDecimal discount,
             @JsonProperty("quantity") final int quantity,
-            @JsonProperty("discount") final BigDecimal discount) {
+            @JsonProperty("unitPrice") BigDecimal unitPrice) {
 
+        this.orderLineId = orderLineId;
         this.product = product;
-        this.quantity = quantity;
         this.discount = discount;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
     }
 
-    public Long getOrderLineId() {
-        return orderLineId;
+    @JsonCreator
+    public OrderLineDO(
+            @JsonProperty("order") final OrderDO order,
+            @JsonProperty("product") final ProductDO product,
+            @JsonProperty("discount") final BigDecimal discount,
+            @JsonProperty("quantity") final int quantity,
+            @JsonProperty("unitPrice") BigDecimal unitPrice) {
+
+        this.order = order;
+        this.product = product;
+        this.discount = discount;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
     }
 
     BigDecimal cost() {
-        return product.getPrice().multiply(BigDecimal.valueOf(quantity));
+        return product.getUnitPrice().multiply(BigDecimal.valueOf(quantity));
     }
 
-    public ProductDO getProduct() {
-        return product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OrderLineDO that = (OrderLineDO) o;
-        return quantity == that.quantity && Objects.equals(orderLineId, that.orderLineId) && Objects.equals(discount, that.discount) && Objects.equals(product, that.product);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(orderLineId, quantity, discount, product);
-    }
-
-    @Override
-    public String toString() {
-        return "OrderLineDO{" +
-                "discount=" + discount +
-                ", orderLineId=" + orderLineId +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

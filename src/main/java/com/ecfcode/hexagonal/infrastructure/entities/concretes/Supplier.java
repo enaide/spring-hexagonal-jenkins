@@ -16,7 +16,7 @@ public class Supplier {
 	
 	@Id
 	@Column(name="supplier_id")
-	private int supplierId;
+	private Long supplierId;
 	
 	@Column(name="company_name")
 	private String companyName;

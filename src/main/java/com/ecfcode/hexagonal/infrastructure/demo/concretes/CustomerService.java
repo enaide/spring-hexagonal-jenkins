@@ -29,7 +29,7 @@ public class CustomerService {
         List<Vehicle> vehicles = vehicleList(ids);
 
         List<Sale> saleDetails = customer.getSales().stream().map(getSaleFunction(vehicles)).toList();
-        saleDetails.forEach(newCustomer::addSale);
+        saleDetails.forEach(sale -> newCustomer.addSale(sale));
 
         return customerRepository.save(newCustomer);
     }

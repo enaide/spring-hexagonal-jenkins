@@ -26,7 +26,6 @@ public class OrderDetail {
     @Column(name = "product_id")
     private Long productId;
 
-
     @Column(name = "unit_price")
     private BigDecimal unitPrice;
 
@@ -53,10 +52,10 @@ public class OrderDetail {
     private Product product;
 
     public OrderDetail(final OrderLineDO orderLine) {
-        this.orderId = orderLine.getOrderLineId();
         // TODO
-        // this.order = new Order(orderLine.getOrder());
-
+//        this.orderId = orderLine.getOrderLineId();
+//        this.order = new Order(orderLine.getOrder());
+//
 //        this.productId = orderLine.getProduct().getProductId();
 //        this.product = new Product(orderLine.getProduct());
 //
@@ -66,11 +65,11 @@ public class OrderDetail {
     }
 
     public OrderLineDO toOrderLine() {
-        OrderLineDO orderLineDO = new OrderLineDO(new ProductDO(productId, unitPrice), quantity);
-        orderLineDO.setOrderLineId(orderId);
-        orderLineDO.setDiscount(discount);
-        orderLineDO.setUnitPrice(unitPrice);
+        return new OrderLineDO(orderId, product.toProductDO(), discount, quantity, unitPrice );
+    }
 
-        return orderLineDO;
+    public OrderLineDO toOrderLineObject() {
+        // TODO REVIEW INFINITE LOOP BETWEEN ENTITIES
+        return new OrderLineDO(order.toOrder(), product.toProductDO(), discount, quantity, unitPrice );
     }
 }

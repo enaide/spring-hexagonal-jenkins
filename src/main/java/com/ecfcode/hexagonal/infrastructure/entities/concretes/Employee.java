@@ -17,7 +17,7 @@ public class Employee {
 
 	@Id
 	@Column(name="employee_id")
-	private int employeeId;
+	private Long employeeId;
 	
 	@Column(name="first_name")
 	private String firstName;

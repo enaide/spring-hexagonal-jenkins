@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class DeleteEmployeeRequest {
 	
 	@Positive
-	private int employeeId;
+	private Long employeeId;
 	
 }
