@@ -157,6 +157,7 @@ public class OrderDO {
         validateState();
         checkNotNull(orderLine);
 
+        // orderLine.setOrder(this);
         orderLines.add(orderLine);
         totalCost = totalCost.add(orderLine.cost());
     }

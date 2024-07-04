@@ -1,23 +1,28 @@
 package com.ecfcode.hexagonal.application.api;
 
 import com.ecfcode.hexagonal.domain.models.OrderDO;
+import com.ecfcode.hexagonal.domain.models.Payment;
 import com.ecfcode.hexagonal.domain.requests.demo.AddProductRequest;
 import com.ecfcode.hexagonal.domain.requests.demo.CreateOrderRequest;
 import com.ecfcode.hexagonal.domain.responses.CreateOrderResponse;
 import com.ecfcode.hexagonal.domain.services.abstracts.OrderService;
+import com.ecfcode.hexagonal.domain.services.concretes.PaymentService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("orders")
 public class OrderController {
 
     private final OrderService orderService;
+    private final PaymentService paymentService;
 
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderService orderService, PaymentService paymentService) {
         this.orderService = orderService;
+        this.paymentService = paymentService;
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -43,7 +48,16 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    OrderDO fetchOrder(@PathVariable final Long id) {
-        return orderService.fetchOrder(id);
+    Payment fetchOrder(@PathVariable final Long id) {
+        OrderDO orderDO = orderService.fetchOrder(id);
+        Payment payment = new Payment(
+                0L,
+                orderDO,
+                BigDecimal.ONE,
+                "Master Card",
+                "Donation"
+        );
+        paymentService.chargeCard(payment);
+        return payment;
     }
 }

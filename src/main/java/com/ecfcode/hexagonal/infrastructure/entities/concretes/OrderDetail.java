@@ -1,5 +1,6 @@
 package com.ecfcode.hexagonal.infrastructure.entities.concretes;
 
+import com.ecfcode.hexagonal.domain.models.OrderDO;
 import com.ecfcode.hexagonal.domain.models.OrderLineDO;
 import com.ecfcode.hexagonal.domain.models.ProductDO;
 import jakarta.persistence.*;
@@ -65,11 +66,56 @@ public class OrderDetail {
     }
 
     public OrderLineDO toOrderLine() {
-        return new OrderLineDO(orderId, product.toProductDO(), discount, quantity, unitPrice );
+        return new OrderLineDO(
+                orderId,
+                toProductDO(),
+                discount,
+                quantity,
+                unitPrice
+        );
+    }
+
+    public OrderDO toOrderDO() {
+        return new OrderDO(
+                order.getOrderId(),
+                order.getOrderDate(),
+                order.getRequiredDate(),
+                order.getShippedDate(),
+                order.getCustomer().getCustomerNumber(),
+                order.getEmployee().getEmployeeId(),
+                order.getShipper().getShipper_id(),
+                order.getFreight(),
+                order.getShipName(),
+                order.getShipAddress(),
+                order.getShipCity(),
+                order.getShipRegion(),
+                order.getShipPostalCode(),
+                order.getShipCountry()
+        );
+    }
+
+    public ProductDO toProductDO() {
+        return new ProductDO(
+                this.product.getProductId(),
+                this.product.getProductName(),
+                this.product.getSupplier().getSupplierId(),
+                this.product.getCategory().getCategoryId(),
+                this.product.getQuantityPerUnit(),
+                this.product.getUnitPrice(),
+                this.product.getUnitsInStock(),
+                this.product.getUnitsOnOrder(),
+                this.product.getReorderLevel(),
+                this.product.getDiscontinued()
+        );
     }
 
     public OrderLineDO toOrderLineObject() {
-        // TODO REVIEW INFINITE LOOP BETWEEN ENTITIES
-        return new OrderLineDO(order.toOrder(), product.toProductDO(), discount, quantity, unitPrice );
+        return new OrderLineDO(
+                toOrderDO(),
+                toProductDO(),
+                discount,
+                quantity,
+                unitPrice
+        );
     }
 }

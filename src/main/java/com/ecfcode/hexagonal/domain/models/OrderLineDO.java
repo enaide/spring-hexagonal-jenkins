@@ -49,6 +49,7 @@ public class OrderLineDO {
             @JsonProperty("quantity") final int quantity,
             @JsonProperty("unitPrice") BigDecimal unitPrice) {
 
+        this.orderLineId = order.getOrderId();
         this.order = order;
         this.product = product;
         this.discount = discount;

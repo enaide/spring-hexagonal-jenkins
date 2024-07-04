@@ -1,5 +1,8 @@
 server:
   port: 8082
+#  servlet:
+#    context-path: /api/v1/
+
 spring:
   application:
     name: spring-hexagonal-jenkins
@@ -16,3 +19,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+
+application:
+  security:
+    jwt:
+      secret-key: 2133404721b4c5a5b9329c1201a6778c40a76db9f2d0f83021340e485c237f03
+      expiration: 86400000 # a day
